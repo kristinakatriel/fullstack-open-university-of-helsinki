@@ -1,4 +1,4 @@
-# fullstack-open-university-of-helsinki
+# Fullstack Open - University of Helsinki Course
 
 This repository contains my work for the [Full Stack Open](https://fullstackopen.com/en/) course offered by the University of Helsinki.
 
@@ -50,6 +50,7 @@ part2
 ├── courseinfo
 ├── phonebook
 └── countries
+.gitignore
 README.md
 ```
 
