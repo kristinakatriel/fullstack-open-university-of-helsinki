@@ -4,7 +4,7 @@ This repository contains my work for the [Full Stack Open](https://fullstackopen
 
 ## 📚 About the Course
 
-The course covers modern web development with JavaScript, focusing on building single-page applications with React and RESTful/GraphQL APIs using Node.js. It also includes topics like TypeScript, React Native, testing, CI/CD, and containerization.
+The course covers modern web development with JavaScript, focusing on building single-page applications with React and RESTful/GraphQL APIs using Node.js. It also includes topics like TypeScript, React Native, testing, CI/CD, and containerisation.
 
 ## 🧠 Topics Covered
 
