@@ -4,7 +4,7 @@ sequenceDiagram
 participant browser
 participant server
 
-Note right of browser: User types a note and clicks the "Save" button or presses enter on their keyboard
+Note right of browser: User types a note and clicks the "Save" button
 
 browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
 activate server
