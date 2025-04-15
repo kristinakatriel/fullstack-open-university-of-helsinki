@@ -1,4 +1,4 @@
-# Fullstack Open - University of Helsinki Course
+# Full Stack Open - University of Helsinki Course
 
 This repository contains my work for the [Full Stack Open](https://fullstackopen.com/en/) course offered by the University of Helsinki.
 
