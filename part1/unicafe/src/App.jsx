@@ -9,6 +9,14 @@ const Display = (props) => {
 
 const Statistics = (props) => {
   console.log(props)
+  if (props.all == 0) {
+    return (
+      <div>
+        <h1>Statistics:</h1>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
   return (
     <div>
       <h1>Statistics:</h1>
