@@ -7,7 +7,10 @@ const Button = ({ onClick, text }) => (
 const StatisticLine = (props) => {
   console.log(props)
   return (
-    <div>{props.text} {props.value} {props.isPercentage ? '%' : ''} </div>
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value} {props.isPercentage ? '%' : ''}</td>
+    </tr>
   )
 }
 
@@ -24,12 +27,16 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>Statistics:</h1>
-      <StatisticLine text="Good" value={props.good} />
-      <StatisticLine text="Neutral" value={props.neutral} />
-      <StatisticLine text="Bad" value={props.bad} />
-      <StatisticLine text="All" value={props.all} />
-      <StatisticLine text="Average" value={props.average} />
-      <StatisticLine text="Positive" value={props.positive} isPercentage={true}/>
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={props.good} />
+          <StatisticLine text="Neutral" value={props.neutral} />
+          <StatisticLine text="Bad" value={props.bad} />
+          <StatisticLine text="All" value={props.all} />
+          <StatisticLine text="Average" value={props.average} />
+          <StatisticLine text="Positive" value={props.positive} isPercentage={true}/>
+        </tbody>
+      </table>
     </div>
   )
 }
