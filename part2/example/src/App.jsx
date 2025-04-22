@@ -1,47 +1,55 @@
+import { useState } from 'react'
 import Note from './components/Note'
 
-const App = ({ notes }) => {
-  // We are only interested in the field notes of the props, so let's retrieve that directly using destructuring:
-  // const { notes } = props
+
+const App = (props) => {
+  const [notes, setNotes] = useState(props.notes)
+  const [newNote, setNewNote] = useState('')
+  const [showAll, setShowAll] = useState(true)
+
+  const addNote = (event) => {
+    event.preventDefault()
+    const noteObject = {
+      content: newNote,
+      important: Math.random() < 0.5,
+      id: String(notes.length + 1),
+    }
+  
+    setNotes(notes.concat(noteObject))
+    setNewNote('')
+  }
+
+  const handleNoteChange = (event) => {
+    console.log(event.target.value)
+    setNewNote(event.target.value)
+  }
+
+  const notesToShow = showAll
+  ? notes
+  : notes.filter(note => note.important === true)
 
   return (
     <div>
       <h1>Notes</h1>
-
-      {/* Only works due to the fact that there are exactly three notes in the array. */}
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? 'important' : 'all'}
+        </button>
+      </div>
       <ul>
-        <li>{notes[0].content}</li>
-        <li>{notes[1].content}</li>
-        <li>{notes[2].content}</li>
-      </ul>
-
-      {/* We can improve on this by generating React elements from the array objects using the map function. */}
-      {/* Because the code generating the li tags is JavaScript, it must be wrapped in curly braces in a JSX template just like all other JavaScript code. */}
-      <ul>
-        {notes.map(note => 
-          <li key={note.id}>
-            {note.content}
-          </li>
-        )}
-      </ul>
-
-      {/* This is, however, not recommended and can create undesired problems even if it seems to be working just fine. */}
-      <ul>
-        {notes.map((note, i) => 
-          <li key={i}>
-            {note.content}
-          </li>
-        )}
-      </ul>
-
-      <ul>
-        {notes.map(note => 
+        {notesToShow.map(note =>
           <Note key={note.id} note={note} />
         )}
       </ul>
-
+      <form onSubmit={addNote}>
+        <input
+          value={newNote}
+          onChange={handleNoteChange}
+        />
+        <button type="submit">save</button>
+      </form>  
     </div>
   )
 }
 
-export default App
+export default App 
