@@ -17,12 +17,12 @@ const App = () => {
       (person.number?.toLowerCase() ?? '').includes(filter.toLowerCase())
     );
 
-
   useEffect(() => {
     personService
       .getAll()
       .then(initialNames => {
-        setPersons(initialNames)
+        const cleanedNames = initialNames.filter(person => person.name);
+        setPersons(cleanedNames);
       })
   }, [])
 
@@ -31,9 +31,8 @@ const App = () => {
     const nameObject = {
       name: newName,
       number: newNumber,
-      id: String(persons.length + 1),
+      id: String(Date.now()),
     }
-
     const found = persons.some(persons => persons.name === newName);
     if (found) {
       alert(`${newName} is already added to phonebook`)
@@ -46,7 +45,27 @@ const App = () => {
         setNewName('')
         setNewNumber('')
       })
-
+    }
+  }
+  const deleteName = (personName, personId) => {
+    console.log('trying to delete', personId)
+    if (window.confirm(`Delete ${personName} ?`)) {
+      const found = persons.some(persons => persons.id === personId);
+      console.log(found)
+      if (found) {
+        personService
+        .remove(personId)
+        .then(() => {
+          setPersons(persons.filter(person => {
+            return person.id != personId;
+          }))
+          setFilter('')
+          setNewName('')
+          setNewNumber('')
+        })
+      }
+    } else {
+      console.log('Cancel')
     }
   }
   const handleFilterChange = (event) => {
@@ -75,7 +94,10 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons filteredPersons={personsToShow} />
+      <Persons
+        filteredPersons={personsToShow}
+        deleteName={deleteName}
+      />
       </div>
   )
 }
