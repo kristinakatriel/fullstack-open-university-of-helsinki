@@ -1,9 +1,9 @@
 const Persons = ({ filteredPersons }) => {
   return (
     <div>
-      {filteredPersons.map(persons =>
-        <div key={persons.name}>
-          {persons.name} {persons.number}
+      {filteredPersons.map(person =>
+        <div key={person.id}>
+          {person.name} {person.number}
         </div>
       )}
     </div>
