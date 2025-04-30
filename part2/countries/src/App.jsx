@@ -26,6 +26,9 @@ const App = () => {
   const handleSearchChange = (event) => {
     console.log(`Searching: ${event.target.value}`)
     setSearch(event.target.value);
+    if (event.target.value === '') {
+      setCountry(null);
+    }
   }
 
   const handleCountryChange = (country) => {
