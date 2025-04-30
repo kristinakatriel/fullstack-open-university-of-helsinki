@@ -1,13 +1,13 @@
 import Search from './components/Search'
 import Content from './components/Content'
+import CountryDetails from './components/CountryDetails';
 import countryService from './services/countries'
 import { useState, useEffect } from 'react'
 
 const App = () => {
   const [search, setSearch] = useState('')
   const [countries, setCountries] = useState([])
-
-  console.log(countries)
+  const [country, setCountry] = useState(null)
 
   const countriesFound = search === ''
   ? []
@@ -28,10 +28,15 @@ const App = () => {
     setSearch(event.target.value);
   }
 
+  const handleCountryChange = (country) => {
+    setCountry(country);
+  };
+
   return (
     <div>
       <Search search={search} handleSearchChange={handleSearchChange} />
-      <Content countriesFound={countriesFound} />
+      <Content countriesFound={countriesFound} handleCountryChange={handleCountryChange} />
+      {country ? <CountryDetails country={country} /> : null}
     </div>
   )
 }
