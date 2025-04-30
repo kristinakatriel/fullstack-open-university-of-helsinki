@@ -11,6 +11,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [sucessMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const personsToShow = filter === ''
   ? persons
@@ -57,6 +58,14 @@ const App = () => {
           setNewName('')
           setNewNumber('')
         })
+        .catch(() => {
+          setErrorMessage(
+            `Information of ${newName} has already been removed from server`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
       } else {
         console.log('Cancel')
       }
@@ -93,6 +102,14 @@ const App = () => {
           setNewName('')
           setNewNumber('')
         })
+        .catch(() => {
+          setErrorMessage(
+            `Information of ${personName} has already been removed from server`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
       }
     } else {
       console.log('Cancel')
@@ -114,7 +131,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={sucessMessage} />
+      <Notification message={sucessMessage} type='success'/>
+      <Notification message={errorMessage} type='error'/>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <h3>add a new</h3>
       <PersonForm 
